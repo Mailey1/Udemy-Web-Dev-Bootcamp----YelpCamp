@@ -23,7 +23,8 @@ app.use(express.static(__dirname + "/public"));
 // Mongoose set up.
 mongoose.set("useUnifiedTopology", true);
 mongoose.set("useNewUrlParser", true);
-mongoose.connect('mongodb://localhost:27017/yelp_camp');
+mongoose.connect("mongodb+srv://Mailey1:mongopassword@cluster0-mupwj.mongodb.net/yelp_camp?retryWrites=true&w=majority");
+//mongoose.connect('mongodb://localhost:27017/yelp_camp');
 
 // PASSPORT CONFIG
 app.use(require("express-session")({
@@ -64,6 +65,8 @@ app.use("/", authRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
 app.use("/campgrounds", campgroundRoutes);
 
-app.listen(3000, function() { 
-    console.log('YelpCamp Server started on port 3000'); 
-  });
+var port = process.env.PORT || 3000;
+
+app.listen(port, function () {
+  console.log("Server Has Started!");
+});
